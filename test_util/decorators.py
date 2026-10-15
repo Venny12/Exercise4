@@ -11,9 +11,17 @@ def timer(func):
 
     The decorated function must keep its own __name__ and __doc__ (use @wraps).
     """
-    # TODO: define an inner `wrapper(*args, **kwargs)` decorated with @wraps(func).
-    #   Inside: note time.perf_counter() before, call func(*args, **kwargs) and KEEP the result,
-    #   note the time after, append (func.__name__, elapsed) to TIMING_LOG, print the line,
-    #   and `return result`. Finally `return wrapper` from timer.
-    # Until you do this, timer returns func unchanged, so the checks will tell you nothing was timed.
-    return func
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time.perf_counter()
+
+        result = func(*args, **kwargs)
+
+        elapsed = time.perf_counter() - start
+
+        TIMING_LOG.append((func.__name__, elapsed))
+        print(f"[timer] {func.__name__} took {elapsed:.4f} seconds")
+
+        return result
+
+    return wrapper
