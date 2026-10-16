@@ -3,7 +3,7 @@
 This file is PROVIDED. It re-exports the public names so that other code can write
     from test_utils import is_valid_test_id, generate_username, timer
 """
-from test_utils.validators import (
+from test_util.validators import (
     is_in_range,
     is_valid_test_id,
     is_valid_email,
@@ -11,7 +11,7 @@ from test_utils.validators import (
     is_valid_status_code,
     all_pass,
 )
-from test_utils.generators import (
+from test_util.generators import (
     generate_username,
     generate_usernames,
     generate_password,
@@ -19,5 +19,5 @@ from test_utils.generators import (
     make_test_case,
     generate_test_cases,
 )
-from test_utils.helpers import sort_cases, slowest, count_by
-from test_utils.decorators import timer, TIMING_LOG
+from test_util.helpers import sort_cases, slowest, count_by
+from test_util.decorators import timer, TIMING_LOG
