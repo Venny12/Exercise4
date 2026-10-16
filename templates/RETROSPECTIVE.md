@@ -43,8 +43,8 @@ Fill one row per 30-minute block (add rows if you swapped more often).
 - Output of `git shortlog -sne` (paste): [WRITE HERE]
 
 ## 7. Next time
-- Two things we would do differently: [WRITE HERE]
-- Self-rating, 1 (poor) to 5 (excellent): communication [WRITE HERE], keeping to the swap timer [WRITE HERE], understanding every line [WRITE HERE]
+- Two things we would do differently: [nothing, project was smooth for us]
+- Self-rating, 1 (poor) to 5 (excellent): communication [5], keeping to the swap timer [5], understanding every line [5]
 
 ## 8. Final check
-Paste the last lines of `python3 check_exercise.py` (the "x/y checks passed" line): [WRITE HERE]
+Paste the last lines of `python3 check_exercise.py` (the "x/y checks passed" line): [19/20 checks passed, because the retrospective is not fully done in this step yet]
