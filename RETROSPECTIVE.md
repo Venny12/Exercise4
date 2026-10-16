@@ -40,7 +40,8 @@ collaboration went well, we divided the tasks according to the file and requirem
 ## 6. Git collaboration
 - Did every swap follow commit, push, pull? What went wrong when we skipped a step? we followed every step
 - Did we get a merge conflict? How did we resolve it (or why not)? we got one, two functions were duplicated and we deleted one
-- Output of `git shortlog -sne` (paste): i will put if after i pushed to the github
+- Output of `git shortlog -sne` (paste): 9  Chinthakrinda Vennela Preethi chvpreethi1208@gmail.com
+                                         6  Shaqayeq6 shaqayeq.salimy@gmail.com
 
 ## 7. Next time
 - Two things we would do differently: nothing, project was smooth for us
