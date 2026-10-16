@@ -11,13 +11,22 @@ STATUSES = ("New", "Passed", "Failed")
 def generate_username(prefix="user", length=4, seed=None):
     """Return a username like 'user4821': prefix followed by `length` random digits."""
     # TODO: rng = random.Random(seed); join rng.choice(string.digits) `length` times
-    pass
+    rng = random.Random(seed)
+    return prefix + ''.join(rng.choice(string.digits) for _ in range(length))
 
 
 def generate_usernames(count, seed=None):
     """Return a list of `count` UNIQUE usernames like 'user4821' (count must be 9000 or less)."""
     # TODO: rng + a list + a set `seen`; a while loop until you have `count` unique names
-    pass
+    rng = random.Random(seed)
+    seen = set()
+    usernames = []
+    while len(usernames) < count:
+        username = generate_username(seed=rng.randint(0, 1000000))
+        if username not in seen:
+            seen.add(username)
+            usernames.append(username)
+    return usernames
 
 
 def generate_password(length=12, seed=None):
@@ -25,13 +34,23 @@ def generate_password(length=12, seed=None):
     that always contains an uppercase letter, a lowercase letter and a digit.
     FOR TEST DATA ONLY: random is not secure."""
     # TODO: rng; start with one upper, one lower, one digit; fill up with a loop; rng.shuffle; join
-    pass
+    rng = random.Random(seed)
+    password = [
+        rng.choice(string.ascii_uppercase),
+        rng.choice(string.ascii_lowercase),
+        rng.choice(string.digits)
+    ]
+    for _ in range(length - 3):
+        password.append(rng.choice(string.ascii_letters + string.digits))
+    rng.shuffle(password)
+    return ''.join(password)
 
 
 def generate_test_id(number, prefix="TC", digits=3):
     """Return a zero-padded test ID: generate_test_id(7) -> 'TC-007'."""
     # TODO: str(number), then pad with '0' * (digits - len(text))
-    pass
+    text = str(number)
+    return prefix + '-' + '0' * (digits - len(text)) + text
 
 
 def make_test_case(test_id, name, **options):
@@ -40,9 +59,20 @@ def make_test_case(test_id, name, **options):
     Defaults: priority 'Medium', status 'New', duration 0.0.
     make_test_case('TC-001', 'Login', priority='High', browser='Chrome') adds/overrides keys.
     """
-    # TODO: build the defaults dict, then case.update(options); return case
-    pass
 
+    # TODO: build the defaults dict, then case.update(options); return case
+
+    case = {
+        "id": test_id,
+        "name": name,
+        "priority": "Medium",
+        "status": "New",
+        "duration": 0.0
+    }
+
+    case.update(options)
+
+    return case
 
 def generate_test_cases(count, seed=None):
     """Return `count` test-case dicts with IDs TC-001, TC-002, ... and names 'Test case 1', ...
@@ -51,4 +81,25 @@ def generate_test_cases(count, seed=None):
     duration is a random value from 0.10 to 5.00 seconds (2 decimals).
     """
     # TODO: rng = random.Random(seed); loop number in range(1, count + 1); reuse generate_test_id and make_test_case
-    pass
+    rng = random.Random(seed)
+    cases = []
+
+    for number in range(1, count + 1):
+        test_id = generate_test_id(number)
+        name = f"Test case {number}"
+
+        priority = rng.choice(PRIORITIES)
+        status = rng.choice(STATUSES)
+        duration = round(rng.uniform(0.10, 5.00), 2)
+
+        case = make_test_case(
+            test_id,
+            name,
+            priority=priority,
+            status=status,
+            duration=duration
+        )
+
+        cases.append(case)
+
+    return cases
