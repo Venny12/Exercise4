@@ -1,7 +1,7 @@
 """Integration script: uses the whole library. Run with: python3 demo_report.py"""
-from test_util.generators import generate_test_cases
-from test_util.helpers import sort_cases, slowest, count_by
-from test_util.decorators import timer
+from test_utils.generators import generate_test_cases
+from test_utils.helpers import sort_cases, slowest, count_by
+from test_utils.decorators import timer
 
 #returns a string, see its docstring (header, total, slowest, by-priority, one line per case slowest first)
 # ; already decorated with @timer
